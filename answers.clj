@@ -47,3 +47,16 @@
 ;; (= __ (conj '(3 4) 2 1))
 
 ;; '(1 2 3 4)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Problem 6 - Intro to Vectors
+
+;; Vectors can be constructed several ways. You can compare them with lists.
+
+;; (= [__] (list :a :b :c) (vec '(:a :b :c)) (vector :a :b :c))
+
+;; :a :b :c
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
