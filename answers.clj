@@ -21,8 +21,8 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 3 - Intro to Strings
 
+;; = (__ (.toUpperCase "hello world"))
 
-
-
-
+;; "HELLO WORLD"
