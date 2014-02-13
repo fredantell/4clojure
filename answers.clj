@@ -163,3 +163,17 @@
 ;; #((partial * 2) %)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Problem 16 - Hello World
+
+;; Write a function which returns a personalized greeting.
+
+;; (= (__ "Dave") "Hello, Dave!")
+;; (= (__ "Jenn") "Hello, Jenn!")
+;; (= (__ "Rhea") "Hello, Rhea!")
+
+;; (fn [name] (str "Hello, " name "!"))
+;; #(str "Hello, " % "!")
+;; #((partial str "Hello, ") % "!")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
