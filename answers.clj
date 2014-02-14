@@ -197,3 +197,31 @@
 ;; [6 7]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Problem 19 - Last Element
+
+;; Write a function which returns the last element in a sequence.
+;; Special Restrictions: last
+;; (= (__ [1 2 3 4 5]) 5)
+;; (= (__ '(5 4 3)) 3)
+;; (= (__ ["b" "c" "d"]) "d")
+
+;; Low level answer that uses recursion.
+;; Take the sequence and destructure into a head and tail
+;; if the tail is empty, you're at the end so return the head
+;; if not then recur using the tail.  Eventually you'll consume the
+;; entire sequence
+(comment 
+  (fn [coll]
+    (loop [[head & tail] coll]
+      (if (empty? tail)
+        head
+        (recur tail))))  
+)
+
+;; You can find out how many items in the sequence using count
+;; if you drop (- count 1) you'll get a seq with just one item
+;; you need a scalar and not a seq, so use first
+;; #(first (drop (dec count %) %))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
