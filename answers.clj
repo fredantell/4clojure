@@ -221,7 +221,7 @@
 
 ;; You can find out how many items in the sequence using count
 ;; if you drop (- count 1) you'll get a seq with just one item
-;; you need a scalar and not a seq, so use first
+;; drop returns a seq, but you need a scalar. So use first.
 (comment
   #(first (drop (dec count %) %))
 )
@@ -252,5 +252,17 @@
 (comment
   #(first (take-last 2 %))
 )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Problem 35 - Local Bindings
+
+;; Clojure lets you give local names to values using the special let-form.
+
+;; (= __ (let [x 5] (+ 2 x)))
+;; (= __ (let [x 3, y 10] (- y x)))
+;; (= __ (let [x 21] (let [y 3] (/ x y))))
+
+;; 7
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
