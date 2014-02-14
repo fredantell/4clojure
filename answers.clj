@@ -222,6 +222,35 @@
 ;; You can find out how many items in the sequence using count
 ;; if you drop (- count 1) you'll get a seq with just one item
 ;; you need a scalar and not a seq, so use first
-;; #(first (drop (dec count %) %))
+(comment
+  #(first (drop (dec count %) %))
+)
+
+(comment
+  #(first (take-last 1 %))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Problem 20 - Penultimate Element
+
+;; Write a function which returns the second to last element from a sequence.
+
+;; (= (__ (list 1 2 3 4 5)) 4)
+;; (= (__ ["a" "b" "c"]) "b")
+;; (= (__ [[1 2] [3 4]]) [1 2])
+
+;; Modified my answers from the previous problem.
+(comment
+  (fn [coll]
+    (loop [[head & tail] coll]
+      (if (= 1 (count tail))
+        head
+        (recur tail))))
+
+  )
+(comment
+  #(first (take-last 2 %))
+)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
