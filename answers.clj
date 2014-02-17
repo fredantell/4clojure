@@ -275,6 +275,27 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 22 - Count a Sequence
+
+;; Write a function which returns the total number of elements in a sequence.
+;; Special Restrictions: count
+
+;;test cases
+(comment 
+  (= (__ '(1 2 3 3 1)) 5)
+  (= (__ "Hello World") 11)
+  (= (__ [[1 2] [3 4] [5 6]]) 3)
+  (= (__ '(13)) 1)
+  (= (__ '(:a :b :c)) 3)
+)
+
+;;answer
+(comment
+  #(reduce (fn [a b] (inc a)) 0 %)
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 35 - Local Bindings
 
 ;; Clojure lets you give local names to values using the special let-form.
@@ -301,3 +322,5 @@
 )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
