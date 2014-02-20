@@ -387,6 +387,16 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 57 - Simple Recursion
+
+;; A recursive function is a function which calls itself. This is one of the fundamental techniques used in functional programming.
+
+;; (= __ ((fn foo [x] (when (> x 0) (conj (foo (dec x)) x))) 5))
+
+;; '(5 4 3 2 1)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 64 - Intro to Reduce
 
 ;; Reduce takes a 2 argument function and an optional starting value. It then applies the function to the first 2 items in the sequence (or the starting value and the first element of the sequence). In the next iteration the function will be called on the previous return value and the next item from the sequence, thus reducing the entire collection to one value. Don't worry, it's not as complicated as it sounds.
