@@ -350,6 +350,33 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 27 - Palindrome Detector
+
+;; Write a function which returns true if the given sequence is a palindrome.
+;;Hint: "racecar" does not equal '(\r \a \c \e \c \a \r)
+
+(comment
+  (false? (__ '(1 2 3 4 5)))
+  (true? (__ "racecar"))
+  (true? (__ [:foo :bar :foo]))
+  (true? (__ '(1 1 3 3 1 1)))
+  (false? (__ '(:a :b :c)))
+)
+
+;; Took me a while to realize that while the first half = the second
+;; half, the much easier solution is that the sequence is
+;; identical to its reverse
+(comment 
+  #(= (seq %) (reverse %))
+
+  #(let [half (int (/ (count %) 2))]
+     (= 
+      (take half %)
+      (reverse (take-last half %))))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 35 - Local Bindings
 
 ;; Clojure lets you give local names to values using the special let-form.
