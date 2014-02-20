@@ -350,6 +350,24 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 26 - Fibonacci Sequence
+
+;; Write a function which returns the first X fibonacci numbers.
+(comment 
+  (= (__ 3) '(1 1 2))
+  (= (__ 6) '(1 1 2 3 5 8))
+  (= (__ 8) '(1 1 2 3 5 8 13 21)))
+
+;; iterate returns a lazy sequence of all the fibonacci pairs
+;; we map over them with first to get a sequence of fibonaccis
+;; then we can take from our lazy sequence only as much as we need to realize
+(comment
+  #(take % (map first (iterate (fn [[x y]]
+                        [y (+ x y)]) [1 1])))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 27 - Palindrome Detector
 
 ;; Write a function which returns true if the given sequence is a palindrome.
