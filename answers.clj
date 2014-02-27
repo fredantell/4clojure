@@ -432,6 +432,23 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 38 - Maximum Value
+
+;; Write a function which takes a variable number of parameters and returns the maximum value.
+;; Special Restrictions: max max-key
+
+(comment 
+  (= (__ 1 8 3 4) 8)
+  (= (__ 30 20) 30)
+  (= (__ 45 67 11) 67)
+)
+
+(comment
+  (fn [& args] (reduce #(if (> %1 %2) %1 %2) args))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 57 - Simple Recursion
 
 ;; A recursive function is a function which calls itself. This is one of the fundamental techniques used in functional programming.
