@@ -395,6 +395,22 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 29 - Get the Caps
+
+;; Write a function which takes a string and returns a new string containing only the capital letters.
+
+(comment 
+  (= (__ "HeLlO, WoRlD!") "HLOWRD")
+  (empty? (__ "nothing"))
+  (= (__ "$#A(*&987Zf") "AZ")
+)
+
+(comment 
+  #(apply str (re-seq #"[A-Z]" %))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 35 - Local Bindings
 
 ;; Clojure lets you give local names to values using the special let-form.
@@ -517,3 +533,5 @@
 ;; reduce +
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
