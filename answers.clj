@@ -411,6 +411,24 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 32 - Duplicate a Sequence
+
+;; Write a function which duplicates each element of a sequence.
+
+(comment 
+  (= (__ [1 2 3]) '(1 1 2 2 3 3))
+  (= (__ [:a :a :b :b]) '(:a :a :a :a :b :b :b :b))
+  (= (__ [[1 2] [3 4]]) '([1 2] [1 2] [3 4] [3 4]))
+  (= (__ [[1 2] [3 4]]) '([1 2] [1 2] [3 4] [3 4]))
+)
+
+(comment
+  #(reduce (fn [a b] (conj a b b)) [] %)
+  #(interleave % %)
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 35 - Local Bindings
 
 ;; Clojure lets you give local names to values using the special let-form.
