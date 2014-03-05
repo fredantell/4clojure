@@ -395,6 +395,34 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 28 - Flatten
+
+;; Write a function which flattens a sequence.
+;; Special Restrictions: flatten
+
+(comment 
+  (= (__ '((1 2) 3 [4 [5 6]])) '(1 2 3 4 5 6))
+  (= (__ ["a" ["b"] "c"]) '("a" "b" "c"))
+  (= (__ '((((:a))))) '(:a))
+)
+
+;; This is just the source to the flatten function..
+;; tree seq is visiting every single node depth first
+;; and appends the seq/value at that node to its return value
+;; you call rest to get rid of the root node
+;; then you filter it for things that are not sequences.
+;; this effectively eliminates all the intermediate sequences
+;; and leaves you only with the scalars left in the leaves.
+;; Said more succinctly tree seq is dumping every node into a large
+;; return value, which you can then filter for just the terminal nodes.
+(comment
+  (fn [coll] 
+  (filter (complement sequential?)
+          (rest (tree-seq sequential? identity coll))))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 29 - Get the Caps
 
 ;; Write a function which takes a string and returns a new string containing only the capital letters.
