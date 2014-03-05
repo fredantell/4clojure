@@ -429,6 +429,23 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 34 - Implement Range
+
+;; Write a function which creates a list of all integers in a given range.
+;; Special Restrictions: range
+
+(comment 
+  (= (__ 1 4) '(1 2 3))
+  (= (__ -2 2) '(-2 -1 0 1))
+  (= (__ 5 8) '(5 6 7))
+)
+
+(comment
+  (fn [x y] (take-while #(< % y) (iterate inc x)))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 35 - Local Bindings
 
 ;; Clojure lets you give local names to values using the special let-form.
