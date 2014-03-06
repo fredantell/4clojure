@@ -528,6 +528,24 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 42 - Factorial Fun
+
+;; Write a function which calculates factorials.
+
+(comment 
+  (= (__ 1) 1)
+  (= (__ 3) 6)
+  (= (__ 5) 120)
+  (= (__ 8) 40320)
+)
+
+(comment 
+  (fn fac [x] (if (= x 1) 1 (* x (fac (dec x))))) ;; recursive solution
+  #(reduce * (range 1 (inc %))) ;; alternate solution
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 48 - Intro to Some
 
 ;; The some function takes a predicate function and a collection. It returns the first logical true value of (predicate x) where x is an item in the collection.
