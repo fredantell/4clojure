@@ -439,6 +439,25 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 30 - Compress a Sequence
+
+;; Write a function which removes consecutive duplicates from a sequence.
+
+(comment 
+  (= (apply str (__ "Leeeeeerrroyyy")) "Leroy")
+  (= (__ [1 1 2 3 3 2 2 3]) '(1 2 3 2 3))
+  (= (__ [[1 2] [1 2] [3 4] [1 2]]) '([1 2] [3 4] [1 2]))
+)
+
+;; partition-by splits every time the function its given returns a new value
+;; In this case, all repeated values get put into a sequence together
+;; From there it's easy to map over them taking the first element
+(comment
+  #(map first (partition-by identity %))  
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 32 - Duplicate a Sequence
 
 ;; Write a function which duplicates each element of a sequence.
