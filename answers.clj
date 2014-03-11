@@ -582,6 +582,18 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 45 - Intro to Iterate
+
+;; The iterate function can be used to produce an infinite lazy sequence.
+
+(comment
+  (= __ (take 5 (iterate #(+ 3 %) 1)))
+)
+
+;; [1 4 7 10 13] 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 47 - Contain Yourself
 
 ;; The contains? function checks if a KEY is present in a given collection. This often leads beginner clojurians to use it incorrectly with numerically indexed collections like vectors and lists.
