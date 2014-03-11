@@ -582,6 +582,21 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 47 - Contain Yourself
+
+;; The contains? function checks if a KEY is present in a given collection. This often leads beginner clojurians to use it incorrectly with numerically indexed collections like vectors and lists.
+
+(comment 
+  (contains? #{4 5 6} __) ;; sets look up by membership
+  (contains? [1 1 1 1 1] __) ;; vectors look up by index
+  (contains? {4 :a 2 :b} __) ;; maps look up by key
+  (not (contains? '(1 2 4) __)) ;; lists look up by index
+)
+
+;; 4
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 48 - Intro to Some
 
 ;; The some function takes a predicate function and a collection. It returns the first logical true value of (predicate x) where x is an item in the collection.
