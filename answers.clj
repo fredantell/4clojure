@@ -582,6 +582,25 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 40 - Interpose a Seq
+
+;; Write a function which separates the items of a sequence by an arbitrary value.
+;; Special Restrictions: interpose
+
+(comment 
+  (= (__ 0 [1 2 3]) [1 0 2 0 3])
+  (= (apply str (__ ", " ["one" "two" "three"])) "one, two, three")
+  (= (__ :z [:a :b :c :d]) [:a :z :b :z :c :z :d])
+)
+
+(comment
+(fn [interposer coll]
+  (butlast (mapcat (fn [x]
+            [x interposer]) coll)))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 42 - Factorial Fun
 
 ;; Write a function which calculates factorials.
