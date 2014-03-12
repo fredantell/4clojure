@@ -617,6 +617,31 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 41 - Drop Every Nth Item
+
+;; Write a function which drops every Nth item from a sequence.
+
+(comment 
+  (= (__ [1 2 3 4 5 6 7 8] 3) [1 2 4 5 7 8])
+  (= (__ [:a :b :c :d :e :f] 2) [:a :c :e])
+  (= (__ [1 2 3 4 5 6] 4) [1 2 3 5 6])
+)
+
+(comment
+;; partition just the ones you want, and then use the step to skip over the one you
+;; don't.  Clever.  
+#(apply concat (partition-all (dec %2) %2 %))
+;; More straightforward answer.  Gets ugly because sometimes the last sequence
+;; does not need butlast called on it.
+#(mapcat (fn [x] 
+           (if (= (count x) %2)
+             (butlast x)
+             x)) 
+         (partition-all %2 %))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 42 - Factorial Fun
 
 ;; Write a function which calculates factorials.
