@@ -700,6 +700,18 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 52 - Intro to Destructuring
+
+;; Let bindings and function parameter lists support destructuring.
+
+(comment 
+  (= [2 4] (let [[a b c d e f g] (range)] __))
+)
+
+;; [c e]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 57 - Simple Recursion
 
 ;; A recursive function is a function which calls itself. This is one of the fundamental techniques used in functional programming.
