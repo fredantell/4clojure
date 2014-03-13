@@ -825,6 +825,35 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 156 - Map Defaults
+
+;; When retrieving values from a map, you can specify default values in case the key is not found:
+;; (= 2 (:foo {:bar 0, :baz 1} 2))
+;;However, what if you want the map itself to contain the default values? Write a function which takes a default value and a sequence of keys and constructs a map.
+
+(comment 
+  (= (__ 0 [:a :b :c]) {:a 0 :b 0 :c 0})
+  (= (__ "x" [1 2 3]) {1 "x" 2 "x" 3 "x"})
+  (= (__ [:a :b] [:foo :bar]) {:foo [:a :b] :bar [:a :b]})
+)
+
+(comment
+  ;; two pretty similar answers I came up with.  (partial assoc {})
+  ;; and (partial into {}) are doing the same thing.
+  ;; I think the 2nd is much more readable.
+  #(reduce 
+    (fn [a b] (into a (hash-map b %))) 
+    (hash-map (first %2) %)
+    %2)
+
+(fn [dft coll]
+(->> (map #(assoc {} %1 dft) coll)
+     (reduce #(merge %1 %2))))
+
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 161 - Subset and Superset
 
 ;; Set A is a subset of set B, or equivalently B is a superset of A, if A is "contained" inside B. A and B may coincide.
