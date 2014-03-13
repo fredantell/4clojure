@@ -700,6 +700,28 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 49 - Split a Sequence
+
+;; Write a function which will split a sequence into two parts.
+;; Special Restrictions: split-at
+
+(comment 
+  (= (__ 3 [1 2 3 4 5 6]) [[1 2 3] [4 5 6]])
+  (= (__ 1 [:a :b :c :d]) [[:a] [:b :c :d]])
+  (= (__ 2 [[1 2] [3 4] [5 6]]) [[[1 2] [3 4]] [[5 6]]])
+)
+
+(comment
+;;equivalent answers. 2nd one is code golfed a bit.
+  (fn [indx coll]
+    [(take indx coll)
+     (drop indx coll)])
+  
+  #(vector (take % %2) (drop % %2))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 52 - Intro to Destructuring
 
 ;; Let bindings and function parameter lists support destructuring.
