@@ -722,6 +722,23 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 51 - Advanced Destructuring
+
+;; Here is an example of some more sophisticated destructuring.
+
+(comment 
+  (= [1 2 [3 4 5] [1 2 3 4 5]] (let [[a b & c :as d] __] [a b c d]))
+)
+
+(comment
+  ;; This gets destructured to [1 2 [3 4 5]]
+  ;; d is the entire collection so [a b c d] becomes:
+  ;; [1 2 [3 4 5] [1 2 3 4 5]]
+  [1 2 3 4 5]
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 52 - Intro to Destructuring
 
 ;; Let bindings and function parameter lists support destructuring.
