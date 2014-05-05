@@ -780,6 +780,26 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 61 - Map Construction
+
+;; Write a function which takes a vector of keys and a vector of
+;; values and constructs a map from them.
+;; Special Restrictions: zipmap
+
+(comment 
+  (= (__ [:a :b :c] [1 2 3]) {:a 1, :b 2, :c 3})
+  (= (__ [1 2 3 4] ["one" "two" "three"]) {1 "one", 2 "two", 3 "three"})
+  (= (__ [:foo :bar] ["foo" "bar" "baz"]) {:foo "foo", :bar "bar"})
+)
+
+(comment
+  ;;map over the two collections to assoc them together
+  ;;into works here b/c it conjoins all the items of the "from coll" together
+  #(into {} (map (fn [x y] {x y}) % %2))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 64 - Intro to Reduce
 
 ;; Reduce takes a 2 argument function and an optional starting value. It then applies the function to the first 2 items in the sequence (or the starting value and the first element of the sequence). In the next iteration the function will be called on the previous return value and the next item from the sequence, thus reducing the entire collection to one value. Don't worry, it's not as complicated as it sounds.
