@@ -839,6 +839,29 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 83 - A Half-Truth
+
+;; Write a function which takes a variable number of booleans. Your function should return true if some of the parameters are true, but not all of the parameters are true. Otherwise your function should return false.
+
+(comment
+  (= false (__ false false))
+  (= true (__ true false))
+  (= false (__ true))
+  (= true (__ false true false))
+  (= false (__ true true true))
+  (= true (__ true true true false))
+)
+
+(comment 
+  (fn
+    [& args]
+    (= true (and 
+             (some true? args)
+             (some false? args))))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 134 - A nil key
 
 ;; Write a function which, given a key and map, returns true iff the map contains an entry with that key and its value is nil.
