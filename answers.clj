@@ -812,6 +812,26 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 66 - Greatest Common Divisor
+
+;; Given two integers, write a function which returns the greatest common divisor.
+
+(comment 
+  (= (__ 2 4) 2)
+  (= (__ 10 5) 5)
+  (= (__ 5 7) 1)
+  (= (__ 1023 858) 33)
+)
+
+(comment 
+  (fn [x y]
+    (apply max (filter 
+                #(= 0 (rem x %) (rem y %))
+                (range 1 (min (inc x) (inc y))))))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 68 - Recurring Theme
 
 ;; Clojure only has one non-stack-consuming looping construct: recur. Either a function or a loop can be used as the recursion point. Either way, recur rebinds the bindings of the recursion point to the values it is passed. Recur must be called from the tail-position, and calling it elsewhere will result in an error.
