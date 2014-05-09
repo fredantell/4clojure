@@ -660,6 +660,35 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 44 - Rotate Sequence
+
+;; Write a function which can rotate a sequence in either direction.
+
+(comment 
+  (= (__ 2 [1 2 3 4 5]) '(3 4 5 1 2))
+  (= (__ -2 [1 2 3 4 5]) '(4 5 1 2 3))
+  (= (__ 6 [1 2 3 4 5]) '(2 3 4 5 1))
+  (= (__ 1 '(:a :b :c)) '(:b :c :a))
+  (= (__ -4 '(:a :b :c)) '(:c :a :b))
+)
+
+(comment 
+  ;; my first attempt.. only works for positive numbers
+  ;; creates a neverending cycle of the seq and then takes from the
+  ;; specified index.  Breaks on (drop index ...) when index is neg
+  (fn [index coll]
+    (take (count coll) (drop index (cycle coll))))
+
+  ;; rather than creating a neverending sequence, just calculates
+  ;; where the cleave would happen.  Then drops, takes, and concats
+  ;; to create that sequence.
+  #(let [n (mod % (count %2))]
+         (concat (drop n %2)
+                 (take n %2)))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 45 - Intro to Iterate
 
 ;; The iterate function can be used to produce an infinite lazy sequence.
