@@ -660,6 +660,30 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 43 - Reverse Interleave
+
+;; Write a function which reverses the interleave process into x number of subsequences.
+
+(comment 
+  (= (__ [1 2 3 4 5 6] 2) '((1 3 5) (2 4 6)))
+  (= (__ (range 9) 3) '((0 3 6) (1 4 7) (2 5 8)))
+  (= (__ (range 10) 5) '((0 5) (1 6) (2 7) (3 8) (4 9)))
+)
+
+(comment
+  ;; One thing to notice is that this solution would break if they
+  ;; had included any test cases where the length of the sequence
+  ;; wasn't divisible by the number of groupings.  You could use
+  ;; partition-all and you've have an odd sized sequence at the end
+  ;; with less entries.  Because map stops the moment any sequences
+  ;; run out of entries, it would fail.
+  ;; This works though :)
+ #(apply map list (partition %2 %))
+)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 44 - Rotate Sequence
 
 ;; Write a function which can rotate a sequence in either direction.
