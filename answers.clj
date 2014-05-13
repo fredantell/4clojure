@@ -932,6 +932,27 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 81 - Set Intersection
+
+;; Write a function which returns the intersection of two sets. The
+;; intersection is the sub-set of items that each set has in common.
+;; Special Restrictions: intersection
+
+(comment 
+  (= (__ #{0 1 2 3} #{2 3 4 5}) #{2 3})
+  (= (__ #{0 1 2} #{3 4 5}) #{})
+  (= (__ #{:a :b :c :d} #{:c :e :a :f :d}) #{:a :c :d})
+)
+
+(comment
+  ;; because sets can be used as functions just pass it as a predicate
+  ;; to use against each member from the 2nd collection.
+  #(set (filter % %2))
+  #(into #{} (filter % %2)) ;; equivalent solution
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 83 - A Half-Truth
 
 ;; Write a function which takes a variable number of booleans. Your function should return true if some of the parameters are true, but not all of the parameters are true. Otherwise your function should return false.
