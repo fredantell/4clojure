@@ -869,6 +869,34 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 62 - Re-implement Iterate
+
+;; Given a side-effect free function f and an initial value x write a function which returns an infinite lazy sequence of x, (f x), (f (f x)), (f (f (f x))), etc.
+;; Special Restrictions: iterate
+
+(comment 
+  (= (take 5 (__ #(* 2 %) 1)) [1 2 4 8 16])
+  (= (take 100 (__ inc 0)) (take 100 (range)))
+  (= (take 9 (__ #(inc (mod % 3)) 1)) (take 9 (cycle [1 2 3])))
+)
+
+(comment
+  ;; reductions returns the result of each intermediate step of a reduce
+  ;; here I'm re-purposing it as an iterator.
+  ;; (range) is used as the coll to produce an infinite sequence to process
+  ;; its actual output doesn't matter.
+  (fn [f x]
+    (cons x (reductions (fn [x _] (f x)) (f x) (range))))
+
+  ;; a nicer solution is to just reproduce the source of the iterate
+  ;; function itself.  cons starts the sequence with x and then
+  ;; recurses by passing in the same function and (f x) for the new value.
+  (fn iterate* [f x]
+    (cons x (lazy-seq (iterate* f (f x)))))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 64 - Intro to Reduce
 
 ;; Reduce takes a 2 argument function and an optional starting value. It then applies the function to the first 2 items in the sequence (or the starting value and the first element of the sequence). In the next iteration the function will be called on the previous return value and the next item from the sequence, thus reducing the entire collection to one value. Don't worry, it's not as complicated as it sounds.
