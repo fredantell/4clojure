@@ -1020,6 +1020,26 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 99 - Product Digits
+
+;; Write a function which multiplies two numbers and returns the result as a sequence of its digits.
+
+(comment 
+  (= (__ 1 1) [1])
+  (= (__ 99 9) [8 9 1])
+  (= (__ 999 99) [9 8 9 0 1])
+)
+
+(comment 
+  (fn [x y]       ;; 999 99
+    (->> (* x y) ;; 98901
+         str     ;; "98901"
+         seq     ;; (\9 \8 \9 \0 \1) These chars are shifted 48 spots
+         (map #(- (int %) (int \0))))) ;; Unshift to turn \9 into 9
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 107 - Simple Closures
 
 ;; Lexical scope and first-class functions are two of the most basic building blocks of a functional language like Clojure. When you combine the two together, you get something very powerful called lexical closures. With these, you can exercise a great deal of control over the lifetime of your local bindings, saving their values for use later, long after the code you're running now has finished.
