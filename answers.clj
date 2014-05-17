@@ -897,6 +897,52 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 63 - Group a Sequence
+
+;; Given a function f and a sequence s, write a function which returns a map. The keys should be the values of f applied to each item in s. The value at each key should be a vector of corresponding items in the order they appear in s.
+;; Special Restrictions: group-by
+
+(comment 
+  (= (__ #(> % 5) [1 3 6 8]) {false [1 3], true [6 8]})
+
+  (= (__ #(apply / %) [[1 2] [2 4] [4 6] [3 6]])
+     {1/2 [[1 2] [2 4] [3 6]], 2/3 [[4 6]]})
+
+  (= (__ count [[1] [1 2] [3] [1 2 3] [2 3]])
+     {1 [[1] [3]], 2 [[1 2] [2 3]], 3 [[1 2 3]]})
+)
+
+(comment
+  ;; The basic idea is to process the collection and build up a result
+  ;; which indicates we'd like to use reduce.
+  ;; Reducing functions take an accumulator and the current value
+  ;; being processed.  The accumulator is our map so we can assoc onto it
+  ;; the key we'll be assoc'ing is (f b) or the result of applying our given
+  ;; function to the current item.  When we go to assoc the value,
+  ;; we need to append our result to those already in teh accumulator.
+  ;; We can look those up using (get map key default).  We specify an empty
+  ;; vector as a default in case we're the first so we have something valid
+  ;; to conj on to.
+  (fn [f xs]
+    (reduce (fn [a b]
+              (assoc a (f b) (conj (get a (f b) []) b)))
+            {} xs))
+
+  ;; Same basic concept here.  mapped-res applies the given function
+  ;; to end up with a sequence of keys.
+  ;; zipper then combines those keys with their original values into a
+  ;; tuple.  Then it's a similar reducing function to assoc everything together.
+  (fn [f xs]
+    (let [mapped-res (map f xs)
+          zipper (map #(apply vector [% %2]) mapped-res xs)]
+      (reduce (fn [accum [k v]]
+                (assoc accum k (conj (get accum k []) v)))
+              {} zipper )))
+)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 64 - Intro to Reduce
 
 ;; Reduce takes a 2 argument function and an optional starting value. It then applies the function to the first 2 items in the sequence (or the starting value and the first element of the sequence). In the next iteration the function will be called on the previous return value and the next item from the sequence, thus reducing the entire collection to one value. Don't worry, it's not as complicated as it sounds.
