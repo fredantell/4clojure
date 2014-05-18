@@ -1151,7 +1151,46 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; PROBLEM 134 - A nil key
+;; Problem 122 - Read a binary number
+
+;; Convert a binary number, provided in the form of a string, to its numerical value.
+
+(comment 
+  (= 0     (__ "0"))
+  (= 7     (__ "111"))
+  (= 8     (__ "1000"))
+  (= 9     (__ "1001"))
+  (= 255   (__ "11111111"))
+  (= 1365  (__ "10101010101"))
+  (= 65535 (__ "1111111111111111"))
+)
+
+(comment
+  ;;This answers works and I thought it was a bit boring since it
+  ;;relied only on knowledge that parseInt exists and takes a radix argument.
+  #(Integer/parseInt % 2)
+  
+  ;;Because map processes things left to right and it's easier to
+  ;;compute binary right to left, we reverse the string to start with
+  ;;and turn it from chars to integers in the xs function.
+  ;;in the ys function map-indexed pairs up each number with its index
+  ;;which we can use as the exponent in our calculations.  The only
+  ;;problem case is when you end up with an index of 0 and a value of 0
+  ;;in binary this represents 0, but in our function 0^0 = 1.
+  ;;ys will eventually produce a collection of the base 10 equivalents
+  ;;of each binary place.  Then we just use (reduce + coll) to sum it up.
+  (fn [input]
+    (let [xs (map #(- (int %) 48) (reverse input))
+          ys (map-indexed (fn [index x]
+                            (if (= 0 index x)
+                              0
+                              (int (Math/pow (* 2 x) index)))) xs)]
+      (reduce + ys)))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Problem 134 - A nil key
 
 ;; Write a function which, given a key and map, returns true iff the map contains an entry with that key and its value is nil.
 
