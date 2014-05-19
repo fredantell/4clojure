@@ -1226,6 +1226,23 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 143 - dot product
+
+;; Create a function that computes the dot product of two sequences. You may assume that the vectors will have the same length.
+
+(comment 
+  (= 0 (__ [0 1 0] [1 0 0]))
+  (= 3 (__ [1 1 1] [1 1 1]))
+  (= 32 (__ [1 2 3] [4 5 6]))
+  (= 256 (__ [2 5 6] [100 10 1]))
+)
+
+(comment 
+  #(reduce + (map * % %2))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 145 - For the win
 
 ;; Clojure's for macro is a tremendously versatile mechanism for producing a sequence based on some other sequence(s). It can take some time to understand how to use it properly, but that investment will be paid back with clear, concise sequence-wrangling later. With that in mind, read over these for expressions and try to see how each of them produces the same result.
