@@ -858,6 +858,31 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 56 - Find Distinct Items
+
+;; Write a function which removes the duplicates from a sequence. Order of the items must be maintained.
+;; Special Restrictions: distinct
+
+(comment 
+  (= (__ [1 2 1 3 1 2 4]) [1 2 3 4])
+  (= (__ [:a :a :b :b :c :c]) [:a :b :c])
+  (= (__ '([2 4] [1 2] [1 3] [1 3])) '([2 4] [1 2] [1 3]))
+  (= (__ (range 50)) (range 50))
+)
+
+(comment
+  ;; most interesting part of this is using (some #{x} coll) to
+  ;; check whether x is in the collection.  you can't use get
+  ;; because it does lookups by index, not value for lists and vectors
+  (fn [coll]
+    (reduce 
+     #(if (some #{%2} %) % (conj % %2))
+     []
+     coll))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 57 - Simple Recursion
 
 ;; A recursive function is a function which calls itself. This is one of the fundamental techniques used in functional programming.
