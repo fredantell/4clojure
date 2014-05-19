@@ -1208,6 +1208,25 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 126 - Through the Looking Class
+
+;; Enter a value which satisfies the following:
+
+(comment 
+  (let [x java.lang.Class]
+    (and (= (class x) x) x))
+)
+
+(comment
+  ;;These all work.  You need something that returns itself when you
+  ;;call class on it.
+  Class
+  java.lang.Class
+  (class (class 1))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 134 - A nil key
 
 ;; Write a function which, given a key and map, returns true iff the map contains an entry with that key and its value is nil.
