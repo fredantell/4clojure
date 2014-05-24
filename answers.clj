@@ -1213,6 +1213,57 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 97 - Pascal's Triangle
+
+;; Pascal's triangle is a triangle of numbers computed using the following rules:
+
+;; - The first row is 1.
+;; - Each successive row is computed by adding together adjacent numbers in the row above, and adding a 1 to the beginning and end of the row.
+
+;; Write a function which returns the nth row of Pascal's Triangle. 
+
+(comment 
+  (= (__ 1) [1])
+
+  (= (map __ (range 1 6))
+     [     [1]
+           [1 1]
+           [1 2 1]
+           [1 3 3 1]
+           [1 4 6 4 1]])
+
+  (= (__ 11)
+     [1 10 45 120 210 252 210 120 45 10 1])
+)
+
+(comment
+  ;; This answer works but didn't feel too clojure-y given that I
+  ;; resorted to loop/recur. 
+  (fn [line]
+    (if (= line 1)
+      [1]
+      (loop [curr-line 2
+             value [1 1]]
+        (if (= line curr-line)
+          value
+          (recur
+           (inc curr-line)
+           (flatten [1 (map #(reduce + %) (partition 2 1 value)) 1]))))))
+
+  ;; I remembered the solution to computing a fibonacci sequence was
+  ;; relatievly similar and adapted that to come up with this approach.
+  ;; The core is the same (flatten ...) and now iterate is handling
+  ;; the recursive nature of feeding some output as an input into the
+  ;; next stage.
+(fn [i]
+    (nth 
+     (iterate (fn [row]
+                (flatten [1 (map #(reduce + %) (partition 2 1 row)) 1])) [1])
+     (- i 1)))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 99 - Product Digits
 
 ;; Write a function which multiplies two numbers and returns the result as a sequence of its digits.
