@@ -1306,6 +1306,46 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 118 - Re-implement Map
+
+;; Map is one of the core elements of a functional programming language. Given a function f and an input sequence s, return a lazy sequence of (f x) for each element x in s.
+;; Special Restrictions: map map-indexed mapcat for
+
+(comment 
+  (= [3 4 5 6 7]
+     (__ inc [2 3 4 5 6]))
+
+  (= (repeat 10 nil)
+     (__ (fn [_] nil) (range 10)))
+
+  (= [1000000 1000001]
+     (->> (__ inc (range))
+          (drop (dec 1000000))
+          (take 2)))
+)
+
+(comment 
+  ;;I noticed that the special restrictions did its best to eliminate
+  ;;many of the functions you might use to bastardize an answer.  They
+  ;;forgot about reductions!  Reduce on its own wouldn't work because
+  ;;its job is to roll a collection up into a single answer.
+  ;;Reductions gives you the intermediate values of that process, and
+  ;;I cheated and just threw away the accumulator.  That works fine
+  ;;for most of the collection, but the behavior of reduce is
+  ;;different for the first item in the collection.  I just added a
+  ;;dummy value to my coll and then stripped it off afterwards to get
+  ;;around this..hence the (rest ...) and (cons 0 %2)
+  #(rest (reductions (fn [_ b] (% b)) (cons 0 %2)))
+
+  ;;This is a more sensible answer that uses recursion.
+  (fn map* [f [x & xs :as coll]]
+             (when (seq coll)
+               (lazy-seq
+                (cons (f x) (map* f xs)))))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 122 - Read a binary number
 
 ;; Convert a binary number, provided in the form of a string, to its numerical value.
