@@ -1080,6 +1080,27 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 67 - Prime Numbers
+
+;; Write a function which returns the first x number of prime numbers.
+
+(comment 
+  (= (__ 2) [2 3])
+  (= (__ 5) [2 3 5 7 11])
+  (= (last (__ 100)) 541)
+)
+
+(comment 
+  (fn [x]
+    (take x
+          (remove
+           (fn [n]
+             (some #(= 0 (mod n %)) (range 2 (inc (int (Math/sqrt n))))))
+           (iterate inc 2))))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 68 - Recurring Theme
 
 ;; Clojure only has one non-stack-consuming looping construct: recur. Either a function or a loop can be used as the recursion point. Either way, recur rebinds the bindings of the recursion point to the values it is passed. Recur must be called from the tail-position, and calling it elsewhere will result in an error.
