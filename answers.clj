@@ -1350,7 +1350,7 @@
 
 ;; Convert a binary number, provided in the form of a string, to its numerical value.
 
-(comment 
+(comment       
   (= 0     (__ "0"))
   (= 7     (__ "111"))
   (= 8     (__ "1000"))
@@ -1511,6 +1511,34 @@
 (fn [dft coll]
 (->> (map #(assoc {} %1 dft) coll)
      (reduce #(merge %1 %2))))
+
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Problem 157 - Indexing Sequences
+
+;; Transform a sequence into a sequence of pairs containing the original elements along with their index.
+
+(comment 
+  (= (__ [:a :b :c]) [[:a 0] [:b 1] [:c 2]])
+  (= (__ [0 1 3]) '((0 0) (1 1) (3 2)))
+  (= (__ [[:foo] {:bar :baz}]) [[[:foo] 0] [{:bar :baz} 1]])
+)
+
+(comment 
+  ;; I had fun coming up with different solutions for this.
+
+  ;; One was to use the built in map-indexed, which then required
+  ;; another map to transpose the resulting vectors
+  #(map (fn [[x y]] [y x]) (map-indexed vector %))
+
+  ;; Another was to simply interleave the sequence and then partition
+  #(partition 2  (interleave % (range)))
+
+  ;; This is probably the easiest.  Map takes one item from each
+  ;; collection which you can then call vector on.
+  #(map vector % (range))
 
 )
 
