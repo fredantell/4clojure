@@ -1384,6 +1384,34 @@
                (lazy-seq
                 (cons (f x) (map* f xs)))))
 )
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Problem 120 - Sum of Square Digits
+
+;; Write a function which takes a collection of integers as an argument. Return the count of how many elements are smaller than the sum of their squared component digits. For example: 10 is larger than 1 squared plus 0 squared; whereas 15 is smaller than 1 squared plus 5 squared.
+
+(comment
+  (= 8 (__ (range 10)))
+  (= 19 (__ (range 30)))
+  (= 50 (__ (range 100)))
+  (= 50 (__ (range 1000)))
+)
+
+(comment
+  ;; The most potentially confusing thing is conversion of the string
+  ;; into separate digits.  (seq (str y)) converts the integer into
+  ;; a sequence of characters.  Then calling int converts each character
+  ;; back into an integer.  It's shifted by 48 though, so subtract 48.
+  (fn [ys]
+    (count  (filter true? (map 
+                           (fn [y] (->>
+                                   (seq (str y))
+                                   (map (fn [x] (- (int x) 48)))
+                                   (map (fn [x] (* x x)))
+                                   (reduce +)
+                                   (< y )))
+                           ys))))
+)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
