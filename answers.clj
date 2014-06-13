@@ -1519,6 +1519,60 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 128 - Recognize Playing Cards
+
+;; A standard American deck of playing cards has four suits - spades,
+;; hearts, diamonds, and clubs - and thirteen cards in each suit. Two
+;; is the lowest rank, followed by other integers up to ten; then the
+;; jack, queen, king, and ace.
+
+;;It's convenient for humans to represent these cards as suit/rank
+;;pairs, such as H5 or DQ: the heart five and diamond queen
+;;respectively. But these forms are not convenient for programmers, so
+;;to write a card game you need some way to parse an input string into
+;;meaningful components. For purposes of determining rank, we will
+;;define the cards to be valued from 0 (the two) to 12 (the ace)
+
+;;Write a function which converts (for example) the string "SJ" into a
+;;map of {:suit :spade, :rank 9}. A ten will always be represented
+;;with the single character "T", rather than the two characters "10".
+
+
+(comment 
+  (= {:suit :diamond :rank 10} (__ "DQ"))
+  (= {:suit :heart :rank 3} (__ "H5"))
+  (= {:suit :club :rank 12} (__ "CA"))
+  (= (range 13) (map (comp :rank __ str)
+                     '[S2 S3 S4 S5 S6 S7
+                       S8 S9 ST SJ SQ SK SA]))
+)
+
+(comment
+  ;; Here are two solutions.  The 1st one I really like.  I think the
+  ;; zipmap construction of ranks is pretty clever.  The other thing
+  ;; to be aware of is that when you destructure a string input, it's
+  ;; equivalent to calling seq on it.
+  ;; The 2nd solution was actually my first attempt at this.  I took a
+  ;; look at the code and though it passed the tests, this is
+  ;; precisely the type of thing that is an impenetrable nightmare to
+  ;; understand if you're not the original author.  There's no way to
+  ;; simply look at it and understand what it's doing.  I'd fail it in
+  ;; code review.  
+  (fn [[s r]]
+    (let [suits { \D :diamond, \H :heart, \S :spade, \C :club}
+          ranks (zipmap (map identity "23456789TJQKA") (range 13))]
+      {:suit (get suits s) :rank (get ranks r)}))
+
+  (fn [[a b]]
+    (let [suit (get {\D :diamond \H  :heart \S :spade \C :club} a)
+          rank (->>
+             (list (int b))
+             (map #(get {84 8, 74 9, 81 10, 75 11, 65 12} % (- % 50))))]
+      {:suit suit :rank (apply identity rank)}))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 134 - A nil key
 
 ;; Write a function which, given a key and map, returns true iff the map contains an entry with that key and its value is nil.
