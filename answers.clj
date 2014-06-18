@@ -1148,6 +1148,65 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 73 - Analyzing a tic-tac-toe board
+
+;;A tic-tac-toe board is represented by a two dimensional vector. X is represented by :x, O is represented by :o, and empty is represented by :e. A player wins by placing three Xs or three Os in a horizontal, vertical, or diagonal row. Write a function which analyzes a tic-tac-toe board and returns :x if X has won, :o if O has won, and nil if neither player has won.
+
+(comment
+  (= nil (__ [[:e :e :e]
+              [:e :e :e]
+              [:e :e :e]]))
+
+  (= :x (__ [[:x :e :o]
+             [:x :e :e]
+             [:x :e :o]]))
+
+  (= :o (__ [[:e :x :e]
+             [:o :o :o]
+             [:x :e :x]]))
+
+  (= nil (__ [[:x :e :o]
+              [:x :x :e]
+              [:o :x :o]]))
+
+  (= :x (__ [[:x :e :e]
+             [:o :x :e]
+             [:o :e :x]]))
+
+  (= :o (__ [[:x :e :o]
+             [:x :o :e]
+             [:o :e :x]]))
+
+  (= nil (__ [[:x :o :x]
+              [:x :o :x]
+              [:o :x :o]]))
+)
+
+(comment 
+  ;;horizontal wins, vertical wins, diagonal wins
+  ;; continue checking, stop checking (recursion?)
+
+  ;;grab horizontal collections
+  ;;..just map the collection itself since each vector is a horizontal
+  ;;grab vertical collections
+  ;;..use map to pass all vectors and then output new vecs of all the
+  ;;firsts, seconds, nths
+  ;;grab diagonal collections
+  ;;use an incrementing "nth" to take and construct
+  ;;check through all vectors to see if any of them are winners
+
+  ;;this solution is inefficient because it continues to collect colls even
+  ;;after it has found the winner.  Stop and check after each
+  ;;collection would speed it up.
+
+  ;; Alternate approach would be to create a lookup index that
+  ;; represents all winning combinations so [0 [0 1 2]] [1 [0 1 2]], etc
+  ;; then just use those lookups to check for all :x or :o entries.
+)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 76 - Intro to Trampoline
 
 ;; The trampoline function takes a function f and a variable number of parameters. Trampoline calls f with any parameters that were supplied. If f returns a function, trampoline calls that function with no arguments. This is repeated, until the return value is not a function, and then trampoline returns that non-function value. This is useful for implementing mutually recursive algorithms in a way that won't consume the stack.
