@@ -1371,6 +1371,42 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 100 - Least Common Multiple
+
+;; Write a function which calculates the least common multiple. Your function should accept a variable number of positive integers or ratios. 
+
+(comment 
+  (== (__ 2 3) 6)
+  (== (__ 5 3 7) 105)
+  (== (__ 1/3 2/5) 2)
+  (== (__ 3/4 1/6) 3/2)
+  (== (__ 7 5/7 2 3/5) 210)
+)
+
+(comment
+  ;;Thanks to wikipedia the lcm can be computed with (a * b) / (gcd a b)
+  ;;My previous gcd function only worked for integers.  This solution,
+  ;;also from wikipedia uses the fact that the highest number in a
+  ;;collection minus the lowest number can be repeated.  When the answer
+  ;;is 0 then you've found the gcd for the set.
+  ;;Ex: [105 294] .. 294 - 105 = 189; 189 - 105 = 84; 105 - 84 = 21;
+  ;;84 - 21 = 63; 63 - 21 = 42; 42 - 21 = 21; 21 - 21 = 0; gcd is 21
+  ( (fn [x & ys]
+      (let [gcd (fn gcd [x y]
+                    (if (zero? y)
+                      x
+                      (gcd y (mod x y))))
+            lcm (fn [x y]
+                  (/ (* x y) (gcd x y)))]
+        (loop [a x
+               bs ys]
+          (if (seq bs)
+              (recur (lcm a (first bs)) (rest bs))
+              a)))) 1/3 2/5)
+          )
+(mod 42 22) (mod 22 20) (mod 20 2)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 107 - Simple Closures
 
 ;; Lexical scope and first-class functions are two of the most basic building blocks of a functional language like Clojure. When you combine the two together, you get something very powerful called lexical closures. With these, you can exercise a great deal of control over the lifetime of your local bindings, saving their values for use later, long after the code you're running now has finished.
