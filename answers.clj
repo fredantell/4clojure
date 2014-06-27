@@ -1466,6 +1466,30 @@
 (mod 42 22) (mod 22 20) (mod 20 2)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Problem 102 - intoCamelCase
+
+;; When working with java, you often need to create an object with fieldsLikeThis, but you'd rather work with a hashmap that has :keys-like-this until it's time to convert. Write a function which takes lower-case hyphen-separated strings and converts them to camel-case strings.
+
+(comment 
+  (= (__ "something") "something")
+
+  (= (__ "multi-word-key") "multiWordKey")
+
+  (= (__ "leaveMeAlone") "leaveMeAlone")
+)
+
+(comment
+  ;; Capture the letter after the hyphen and use upper-case on it
+  ;; upper-case is passed a series of tuples consisting of the match
+  ;; and the captured group: [-\w \w]
+  ;; take the 2nd, rest or drop first and upper case for the answer
+  (fn [hyph-case]
+    ( clojure.string/replace hyph-case #"-(\w)" #(clojure.string/upper-case (second %))))
+)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Problem 107 - Simple Closures
 
 ;; Lexical scope and first-class functions are two of the most basic building blocks of a functional language like Clojure. When you combine the two together, you get something very powerful called lexical closures. With these, you can exercise a great deal of control over the lifetime of your local bindings, saving their values for use later, long after the code you're running now has finished.
